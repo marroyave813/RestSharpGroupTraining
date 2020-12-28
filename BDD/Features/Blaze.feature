@@ -21,8 +21,3 @@ Scenario: Log in with non existing user
 	Given user "mauricioarroyave@yimail.com" with password "1234567"
 	When the user logs in
 	Then An error with text "User does not exist." shows
-
-Scenario: Empty test scenario
-	Given incomplete given
-	When incomplete when
-	Then incomplete then
