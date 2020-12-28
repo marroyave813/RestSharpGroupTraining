@@ -73,10 +73,10 @@ namespace RestSharpGroupTraining
         }
 
         [Then(@"An error with text ""(.*)"" shows")]
-        public void ThenAnErrorWithTextShows(string p0)
+        public void ThenAnErrorWithTextShows(string errorMessage)
         {
             response.StatusCode.Should().Be(200);
-            response.Content.Should().Contain("This user already exist.");
+            response.Content.Should().Contain(errorMessage);
         }
 
         [Then(@"A session token generates")]
