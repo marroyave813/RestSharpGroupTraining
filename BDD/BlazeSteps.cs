@@ -17,6 +17,7 @@ namespace RestSharpGroupTraining
         //Variables
         private readonly ScenarioContext _scenarioContext;
         private string jsonData;
+        private string sessionToken;
         BlazeUser blazeUser;
 
         //Restsharp components
@@ -86,6 +87,24 @@ namespace RestSharpGroupTraining
             response.Content.Should().Contain("Auth_token");
         }
 
+        [Then(@"the token is valid for user ""(.*)""")]
+        public void ThenTheTokenIsValidForUser(string user)
+        {
+            string[] responseSplit = response.Content.Split(':', ' ', '"');
+            sessionToken = responseSplit[3];
+
+            request = new RestRequest();
+
+            request = new RestRequest("https://api.demoblaze.com/check");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Accept", "*/*");
+            request.AddJsonBody(new Token(sessionToken));
+            IRestResponse<TokenItem> responseToken = restClient.Post<TokenItem>(request);
+
+            responseToken.StatusCode.Should().Be(200);
+            responseToken.Data.Item.token.Should().Contain(sessionToken);
+            responseToken.Data.Item.username.Should().Contain(user);
+        }
 
 
     }

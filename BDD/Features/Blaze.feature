@@ -11,12 +11,13 @@ Scenario: Sign up with existing user
 	When the user sign's up
 	Then An error with text "This user already exist." shows
 
-	Scenario: Log in with existing user
+Scenario: Log in with existing user
 	Given user "mauricioarroyave@gmail.com" with password "cGFzc3dvcmQx"
 	When the user logs in
 	Then A session token generates
+	And the token is valid for user "mauricioarroyave@gmail.com"
 
-	Scenario: Log in with non existing user
+Scenario: Log in with non existing user
 	Given user "mauricioarroyave@yimail.com" with password "1234567"
 	When the user logs in
 	Then An error with text "User does not exist." shows
