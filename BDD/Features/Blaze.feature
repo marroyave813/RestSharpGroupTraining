@@ -55,3 +55,12 @@ Scenario: Log in with 4 users
 	When the user logs in
 	Then An error with text "User could exist." shows nothing
 
+Scenario: Log in with all users
+	Given user "elzapatico@houmail.com" with password "639852"
+	And user "elzapatico2@houmail.com" with password "639852"
+
+Scenario: Log in nobody
+	Given user "elzapatico@houmail.com" with password "639852"
+	And user "elzapatico2@houmail.com" with password "639852"
+
+
