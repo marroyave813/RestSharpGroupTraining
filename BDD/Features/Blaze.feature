@@ -61,7 +61,7 @@ Scenario: Log in with 4 users
 	And user "elzapatic3o@houmail.com" with password "ccc333"
 
 	Scenario: Log in with 10 users - silavana pérez rojas
-	Given user "elzapatico@houmail.com" with password "478"
+	Given user "silvanaperez@houmail.com" with password "111aaaa"
 	Given user "elzapatico@houmail.com" with password "478"
 	And user "elzapatico2@houmail.com" with password "986"
 	And user "elzapatico2@houmail.com" without pwd
