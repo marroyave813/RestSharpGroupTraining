@@ -11,11 +11,11 @@ namespace RestSharpGroupTraining.Model.JsonModel
 
         public string variable { get; set; }
 
-        public BlazeUser(string user, string pass, string test)
+        public BlazeUser(string user, string pass)
         {
             this.username = user;
             this.password = pass;
-            this.variable = test;
+            this.variable = "test";
 
         }
     }
