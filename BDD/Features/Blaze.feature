@@ -45,3 +45,8 @@ Scenario: Log in with 3 users
 	When the user logs in
 	Then An error with text "User could exist." shows nothing
 
+	Scenario: Log in with another possible existing user
+	Given user "silvanaperez@houmail.com" with password "481216"
+	When the user logs in
+	Then An error with text "User could exist." shows nothing
+
