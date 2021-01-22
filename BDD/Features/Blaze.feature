@@ -47,11 +47,19 @@ Scenario: Log in with 3 users
 
 	Scenario: Log in with another possible existing user
 	Given user "silvanaperez@houmail.com" with password "481216"
+	When the user logs in
+	Then An error with text "User could exist." shows nothing
 
 Scenario: Log in with 4 users
 	Given user "elzapatico@houmail.com" with password "639852"
 	And user "elzapatico2@houmail.com" with password "639852"
 	And user "elzapatic3o@houmail.com" with password "639852"
+
+	Scenario: Log in with 10 users
+	Given user "elzapatico@houmail.com" with password "639852"
+	And user "elzapatico2@houmail.com" with password "639852"
+	And user "elzapatic3o@houmail.com" with password "639852"
 	When the user logs in
 	Then An error with text "User could exist." shows nothing
+	
 
