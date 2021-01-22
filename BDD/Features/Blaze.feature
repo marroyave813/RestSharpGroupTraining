@@ -22,18 +22,17 @@ Scenario: Log in with non existing user
 	When the user logs in
 	Then An error with text "User does not exist." shows
 
-<<<<<<< HEAD
 	Scenario: Log in with another non existing user
 	Given user "mauricioarroyave@yimail.com" with password "1234567"
 	When the user logs in
 	Then An error with text "User does not exist." shows
 
-	Scenario: Log in with existing user
+	Scenario: Log in with existing user again
 	Given user "mauricioarroyave@gmail.com" with password "cGFzc3dvcmQx"
 	When the user logs in
 	Then A session token generates
 	And the token is valid for user "mauricioarroyave@gmail.com"
-=======
+
 Scenario: Log in with a possible existing user
 	Given user "silvanaperez@houmail.com" with password "481216"
 	When the user logs in
@@ -45,4 +44,4 @@ Scenario: Log in with 3 users
 	And user "elzapatic3o@houmail.com" with password "639852"
 	When the user logs in
 	Then An error with text "User could exist." shows nothing
->>>>>>> bb0f2ac68321bb0fc0c7ff5975f8f6065282dbf2
+

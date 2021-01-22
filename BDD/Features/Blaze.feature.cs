@@ -261,7 +261,6 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-<<<<<<< HEAD
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Log in with another non existing user")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Blaze Demo Feature")]
         public virtual void LogInWithAnotherNonExistingUser()
@@ -271,17 +270,6 @@ this.ScenarioInitialize(scenarioInfo);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with another non existing user", null, tagsOfScenario, argumentsOfScenario);
 #line 25
  this.ScenarioInitialize(scenarioInfo);
-=======
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Log in with a possible existing user")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Blaze Demo Feature")]
-        public virtual void LogInWithAPossibleExistingUser()
-        {
-            string[] tagsOfScenario = ((string[])(null));
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with a possible existing user", null, tagsOfScenario, argumentsOfScenario);
-#line 25
-this.ScenarioInitialize(scenarioInfo);
->>>>>>> bb0f2ac68321bb0fc0c7ff5975f8f6065282dbf2
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -301,35 +289,28 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 26
-<<<<<<< HEAD
  testRunner.Given("user \"mauricioarroyave@yimail.com\" with password \"1234567\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-=======
- testRunner.Given("user \"silvanaperez@houmail.com\" with password \"481216\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
->>>>>>> bb0f2ac68321bb0fc0c7ff5975f8f6065282dbf2
 #line hidden
 #line 27
  testRunner.When("the user logs in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
-<<<<<<< HEAD
  testRunner.Then("An error with text \"User does not exist.\" shows", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-=======
- testRunner.Then("An error with text \"User could exist.\" shows nothing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Log in with 3 users")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Log in with existing user again")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Blaze Demo Feature")]
-        public virtual void LogInWith3Users()
+        public virtual void LogInWithExistingUserAgain()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with 3 users", null, tagsOfScenario, argumentsOfScenario);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with existing user again", null, tagsOfScenario, argumentsOfScenario);
 #line 30
-this.ScenarioInitialize(scenarioInfo);
+ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
             bool isFeatureIgnored = default(bool);
@@ -349,20 +330,104 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 31
- testRunner.Given("user \"elzapatico@houmail.com\" with password \"639852\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("user \"mauricioarroyave@gmail.com\" with password \"cGFzc3dvcmQx\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 32
- testRunner.And("user \"elzapatico2@houmail.com\" with password \"639852\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 33
- testRunner.And("user \"elzapatic3o@houmail.com\" with password \"639852\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 34
  testRunner.When("the user logs in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 35
+#line 33
+ testRunner.Then("A session token generates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 34
+ testRunner.And("the token is valid for user \"mauricioarroyave@gmail.com\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Log in with a possible existing user")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Blaze Demo Feature")]
+        public virtual void LogInWithAPossibleExistingUser()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with a possible existing user", null, tagsOfScenario, argumentsOfScenario);
+#line 36
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 37
+ testRunner.Given("user \"silvanaperez@houmail.com\" with password \"481216\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 38
+ testRunner.When("the user logs in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 39
  testRunner.Then("An error with text \"User could exist.\" shows nothing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
->>>>>>> bb0f2ac68321bb0fc0c7ff5975f8f6065282dbf2
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Log in with 3 users")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Blaze Demo Feature")]
+        public virtual void LogInWith3Users()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Log in with 3 users", null, tagsOfScenario, argumentsOfScenario);
+#line 41
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 42
+ testRunner.Given("user \"elzapatico@houmail.com\" with password \"639852\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 43
+ testRunner.And("user \"elzapatico2@houmail.com\" with password \"639852\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 44
+ testRunner.And("user \"elzapatic3o@houmail.com\" with password \"639852\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 45
+ testRunner.When("the user logs in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 46
+ testRunner.Then("An error with text \"User could exist.\" shows nothing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
