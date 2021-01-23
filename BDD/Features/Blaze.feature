@@ -1,4 +1,4 @@
-﻿Feature: Blaze Demo Feature
+Feature: Blaze Demo Feature
 
 @mytag
 Scenario: Sign up with valid user
@@ -57,6 +57,7 @@ Scenario: Log in with 4 users
 
 	Scenario: this is a text to test
 	Given user "elzapatico@houmail.com" with password "aaa111"
+	And user "elzapatico2@houmail.com and elzapatote@hotmail.com" with password "bbb2222"
 	And user "zapaticoroto24@other mail" with password "111222333"
 	And user "elzapatic3o@houmail.com" with password "ccc333"
 
