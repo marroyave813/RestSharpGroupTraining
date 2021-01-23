@@ -1,4 +1,4 @@
-﻿Feature: Blaze Demo Feature
+Feature: Blaze Demo Feature
 
 @mytag
 Scenario: Sign up with valid user
@@ -57,11 +57,16 @@ Scenario: Log in with 4 users
 
 	Scenario: this is a text to test
 	Given user "elzapatico@houmail.com" with password "aaa111"
-	And user "elzapatico2@houmail.com" with password "bbb2222"
-	And user "elzapatic3o@houmail.com" with password "ccc333"
+	And user "elzapatico2@houmail.com and elzapatote@hotmail.com" with password "bbb2222"
+	And user "zapaticoroto24@other mail" with password "111222333"
+	And user "elzapatazo@houmail.com" with password "ccc333"
 
 	Scenario: Log in with 10 users - silavana pérez rojas
 	Given user "elza@hotmail.com" with password "7777777"
+	Given user "silvanaperez@houmail.com" with password "111aaaa"
+	Given user "elzapatico@houmail.com" with password "478"
+	Given user "lupita@hotmail.com" with password "abc123"
+	And user "elzapatico2@houmail.com" with password "986"
 	And user "elzapatico2@houmail.com" without pwd
 	And user "elzapatic3o@houmail.com" with password "0287"
 	When the user logs in
