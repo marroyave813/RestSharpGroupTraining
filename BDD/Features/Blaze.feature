@@ -57,9 +57,9 @@ Scenario: Log in with 4 users
 
 	Scenario: this is a text to test
 	Given user "elzapatico@houmail.com" with password "aaa111"
-	And user "elzapatico2@houmail.com" to test diff with password "bbb2222"
-	And user "elzapatico2@other mail" with password "111222333"
-	And user "mauricio@user.com" to test diff with password "11122233545"
+	And user "elzapatico2@houmail.com and elzapatote@hotmail.com" with password "bbb2222"
+	And user "zapaticoroto24@other mail" with password "111222333"
+	And user "elzapatic3o@houmail.com" with password "ccc333"
 
 	Scenario: Log in with 10 users - silavana pérez rojas
 	Given user "silvanaperez@houmail.com" with password "111aaaa"

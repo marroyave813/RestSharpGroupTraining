@@ -551,7 +551,7 @@ this.ScenarioInitialize(scenarioInfo);
                         "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 61
- testRunner.And("user \"elzapatico2@other mail\" with password \"111222333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("user \"zapaticoroto24@other mail\" with password \"111222333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 62
  testRunner.And("user \"elzapatic3o@houmail.com\" with password \"ccc333\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
