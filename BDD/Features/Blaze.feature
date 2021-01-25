@@ -80,4 +80,9 @@ Scenario: Log in nobody
 	Given user "elzapatico@houmail.com" with password "639852"
 	And user "elzapatico2@houmail.com" with password "639852"
 
+	Scenario: Holaaaaaaaaaaaaaaaaaaaaaaaaaa
+	Given Holaaaaaaaaaaaaaaaaaaaaaaaaaa
+	And Holaaaaaaaaaaaaaaaaaaaaaaaaaa
+	And Holaaaa again
+
 
