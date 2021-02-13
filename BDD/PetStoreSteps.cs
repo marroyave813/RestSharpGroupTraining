@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FluentAssertions;
+using Newtonsoft.Json;
+using RestSharp;
+using RestSharpGroupTraining.Model.JsonModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,50 +16,72 @@ namespace RestSharpGroupTraining.BDD
 		// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
 		private readonly ScenarioContext _scenarioContext;
+		string status;
+
+		//Restsharp components
+		IRestClient restClient = new RestClient();
+		IRestRequest request;
+		IRestResponse response;
 
 		public PetStoreSteps(ScenarioContext scenarioContext)
 		{
 			_scenarioContext = scenarioContext;
 		}
 
-		[Given("the first number is (.*)")]
-		public void GivenTheFirstNumberIs(int number)
+		[Given(@"pets with status (.*)")]
+		public void GivenPetsWithStatus(string petStatus)
 		{
-			//TODO: implement arrange (precondition) logic
-			// For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata 
-			// To use the multiline text or the table argument of the scenario,
-			// additional string/Table parameters can be defined on the step definition
-			// method. 
+			status = petStatus;
 
-			_scenarioContext.Pending();
+			Pet mascota = new Pet(12, "pet", "active");
+
+			Category cat = new Category();
+			cat.name = "cat 1";
+
+			mascota.category = cat;
 		}
 
-		[Given("the second number is (.*)")]
-		public void GivenTheSecondNumberIs(int number)
+		[Given(@"pets with no status")]
+		public void GivenPetsWithNoStatus()
 		{
-			//TODO: implement arrange (precondition) logic
-			// For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata 
-			// To use the multiline text or the table argument of the scenario,
-			// additional string/Table parameters can be defined on the step definition
-			// method. 
-
-			_scenarioContext.Pending();
+			status = "";
 		}
 
-		[When("the two numbers are added")]
-		public void WhenTheTwoNumbersAreAdded()
-		{
-			//TODO: implement act (action) logic
 
-			_scenarioContext.Pending();
+		[When(@"user search with status")]
+		public void WhenUserSearchWithStatus()
+		{
+			request = new RestRequest("https://petstore.swagger.io/v2/pet/findByStatus?status="+status);
+			request.AddHeader("Content-Type", "application/json");
+			request.AddHeader("Accept", "*/*");
+
+			response = restClient.Get(request);
 		}
 
-		[Then("the result should be (.*)")]
-		public void ThenTheResultShouldBe(int result)
+		[Then(@"process is executed succesfully")]
+		public void ThenProcessIsExecutedSuccesfully()
 		{
-			//TODO: implement assert (verification) logic
-
-			_scenarioContext.Pending();
+			response.StatusCode.Should().Be(200);
 		}
+
+		[Then(@"process is executed with errors")]
+		public void ThenProcessIsExecutedWithErrors()
+		{
+			response.StatusCode.Should().Be(400);
+		}
+
+
+		[Then(@"a list of pets with the selected status")]
+		public void ThenAListOfPetsWithTheSelectedStatus()
+		{
+		   Pet.Deserialize(response).Should().OnlyContain(x => x.status.Equals(status));
+		}
+
+		[Then(@"an error message with text ""(.*)"" shows")]
+		public void ThenAnErrorMessageWithTextShows(string errorMessage)
+		{
+			response.Content.Should().Be(errorMessage);
+		}
+
 	}
 }
