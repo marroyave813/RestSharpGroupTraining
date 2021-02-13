@@ -1,13 +1,13 @@
 ﻿using RestSharpGroupTraining.Model.JsonModel;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
-using RestSharp;
 using FluentAssertions;
 using RestSharpGroupTraining.Model.XmlModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 
 namespace RestSharpGroupTraining.BDD
@@ -37,6 +37,13 @@ namespace RestSharpGroupTraining.BDD
 		// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
 		private readonly ScenarioContext _scenarioContext;
+	
+
+		//Restsharp components
+
+		AddNewPet addNewPet;
+		static bool result = false;
+		
 
 		public PetStoreSteps(ScenarioContext scenarioContext)
 		{
@@ -96,6 +103,49 @@ namespace RestSharpGroupTraining.BDD
 			request.AddParameter("status", status);
 			response = restClient.Post(request); //requesting response
 
+		}
+
+
+		[Given(@"i'm gonna create a Pet with Pet Name: ""(.*)"", Type Name: ""(.*)"", photoUrls: ""(.*)"" and status: ""(.*)""")]
+		public void GivenIMGonnaCreateAPetWithPetNameTypeNamePhotoUrlsAndStatus(string PetName, string TypeName, string photoUrls, string status)
+		{
+			addNewPet = new AddNewPet(PetName, TypeName, status);
+		}
+
+		[When(@"i add the Pet to the shelter")]
+		public void WhenIAddThePetToTheShelter()
+		{
+			request = new RestRequest("https://petstore.swagger.io/v2/pet");
+			request.AddHeader("Content-Type", "application/json");
+			request.AddHeader("Accept", "*/*");
+			request.AddJsonBody(addNewPet);
+			IRestResponse<AddNewPet> response = restClient.Post<AddNewPet>(request);
+			Assert.AreEqual(200, (int)response.StatusCode);
+			Assert.IsFalse(response.Content.Contains("errorMessage"));
+		}
+
+
+		[Then(@"the Pet is now present in the shelter with Name: ""(.*)""")]
+		public void ThenThePetIsNowPresentInTheShelterWithName(string expectedName)
+		{
+			restClient = new RestClient();
+			request = new RestRequest("https://petstore.swagger.io/v2/pet/" + addNewPet.id);
+			request.AddHeader("Content-Type", "application/json");
+			request.AddHeader("Accept", "*/*");
+			response = restClient.Get(request);
+
+			AddNewPet Pets = AddNewPet.Deserialize(response);
+
+			Assert.AreEqual(200, (int)response.StatusCode);
+			Assert.IsFalse(response.Content.Contains("error") || response.Content.Contains("Pet not found"));
+
+			string petResponse = response.Content.Substring(6, 5);
+
+			if (petResponse == addNewPet.id.ToString() && Pets.category.name == expectedName)
+			{
+				result = true;
+			}
+			Assert.AreEqual(true, result);
 		}
 
 

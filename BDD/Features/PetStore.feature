@@ -10,13 +10,7 @@ Scenario: Update a product (PUT)
 
 
 
-	Scenario Outline: Log in with non existing user
-	Given user <email> with password <password>
-	When the user logs in
-	Then An error with text "User does not exist." shows
-
-	Examples: 
-	| email                    | password      |
-	| correonoexiste@gmail.com | 3498758fgioh  |
-	| noimporta@gmail.com      | 309t8hsdfiosh |
-	| nomedejemorir@gmail.com  | e0498jf       |
+Scenario: Create a new Pet
+	Given i'm gonna create a Pet with Pet Name: "Tony Quiceno v4", Type Name: "doggie", photoUrls: "string" and status: "available"
+	When i add the Pet to the shelter
+	Then the Pet is now present in the shelter with Name: "Tony Quiceno v4"
