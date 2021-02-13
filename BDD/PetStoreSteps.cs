@@ -1,14 +1,39 @@
-﻿using System;
+﻿using RestSharpGroupTraining.Model.JsonModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TechTalk.SpecFlow;
+using RestSharp;
+using FluentAssertions;
+using RestSharpGroupTraining.Model.XmlModel;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 
 namespace RestSharpGroupTraining.BDD
 {
-	[Binding]
+
+	// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
+
+
+    [Binding]
 	public sealed class PetStoreSteps
 	{
+
+		//Variables
+		//private readonly ScenarioContext _scenarioContext;
+		private string jsonData;
+		private string sessionToken;
+
+
+		//Restsharp components
+		IRestClient restClient = new RestClient();
+		IRestRequest request;
+		IRestResponse response;
+
+
+		Pet petobject; // Declare the object Public so we can use it on every method
+
 		// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
 		private readonly ScenarioContext _scenarioContext;
@@ -42,6 +67,15 @@ namespace RestSharpGroupTraining.BDD
 			_scenarioContext.Pending();
 		}
 
+		
+		[Given(@"a pet with an (.*) that needs to be updated")]
+		public void GivenAPetWithAnThatNeedsToBeUpdated(int identificacion)
+		{
+			petobject = new Pet(identificacion, "", null);
+		}
+
+
+
 		[When("the two numbers are added")]
 		public void WhenTheTwoNumbersAreAdded()
 		{
@@ -50,12 +84,37 @@ namespace RestSharpGroupTraining.BDD
 			_scenarioContext.Pending();
 		}
 
-		[Then("the result should be (.*)")]
-		public void ThenTheResultShouldBe(int result)
+		[When(@"the user updates the category with (.*) and (.*)")]
+		public void WhenTheUserUpdatesTheCategory(string name, string status)
 		{
-			//TODO: implement assert (verification) logic
+			//TODO: implement act (action) logic
+		
+			request = new RestRequest("https://petstore.swagger.io/v2/pet/"+petobject.id);
+			request.AddHeader("accept", "application/json");
+			request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+			request.AddParameter("name", name);
+			request.AddParameter("status", status);
+			response = restClient.Post(request); //requesting response
 
-			_scenarioContext.Pending();
 		}
+
+
+		[Then(@"the result should be ok")]
+		public void ThenTheResultShouldBeOk()
+		{
+			Status data = Status.Deserialize(response);
+			Assert.AreEqual(200, (int)response.StatusCode);
+			Assert.AreEqual(200, (int)data.code);
+			Assert.AreEqual("unknown", (string)data.type);
+			Assert.AreEqual("1", (string)data.message);
+						
+		}
+
+
+
+
+
+
+
 	}
 }

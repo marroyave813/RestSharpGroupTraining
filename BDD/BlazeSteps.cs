@@ -16,7 +16,7 @@ namespace RestSharpGroupTraining
 
         //Variables
         private readonly ScenarioContext _scenarioContext;
-        private string jsonData;
+        //private string jsonData;
         private string sessionToken;
         BlazeUser blazeUser;
 
