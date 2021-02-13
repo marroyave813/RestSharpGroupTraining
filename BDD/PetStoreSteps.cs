@@ -37,10 +37,9 @@ namespace RestSharpGroupTraining.BDD
 		// For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
 		private readonly ScenarioContext _scenarioContext;
-	
+		string status;
 
 		//Restsharp components
-
 		AddNewPet addNewPet;
 		static bool result = false;
 		
@@ -50,31 +49,42 @@ namespace RestSharpGroupTraining.BDD
 			_scenarioContext = scenarioContext;
 		}
 
-		[Given("the first number is (.*)")]
-		public void GivenTheFirstNumberIs(int number)
+		[Given(@"pets with status (.*)")]
+		public void GivenPetsWithStatus(string petStatus)
 		{
-			//TODO: implement arrange (precondition) logic
-			// For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata 
-			// To use the multiline text or the table argument of the scenario,
-			// additional string/Table parameters can be defined on the step definition
-			// method. 
+			status = petStatus;
 
-			_scenarioContext.Pending();
+			Pet mascota = new Pet(12, "pet", "active");
+
+			Category cat = new Category();
+			cat.name = "cat 1";
+
+			mascota.category = cat;
 		}
 
-		[Given("the second number is (.*)")]
-		public void GivenTheSecondNumberIs(int number)
+		[Given(@"pets with no status")]
+		public void GivenPetsWithNoStatus()
 		{
-			//TODO: implement arrange (precondition) logic
-			// For storing and retrieving scenario-specific data see https://go.specflow.org/doc-sharingdata 
-			// To use the multiline text or the table argument of the scenario,
-			// additional string/Table parameters can be defined on the step definition
-			// method. 
-
-			_scenarioContext.Pending();
+			status = "";
 		}
 
-		
+
+		[When(@"user search with status")]
+		public void WhenUserSearchWithStatus()
+		{
+			request = new RestRequest("https://petstore.swagger.io/v2/pet/findByStatus?status="+status);
+			request.AddHeader("Content-Type", "application/json");
+			request.AddHeader("Accept", "*/*");
+
+			response = restClient.Get(request);
+		}
+
+		[Then(@"process is executed succesfully")]
+		public void ThenProcessIsExecutedSuccesfully()
+		{
+			response.StatusCode.Should().Be(200);
+		}
+
 		[Given(@"a pet with an (.*) that needs to be updated")]
 		public void GivenAPetWithAnThatNeedsToBeUpdated(int identificacion)
 		{
@@ -86,9 +96,13 @@ namespace RestSharpGroupTraining.BDD
 		[When("the two numbers are added")]
 		public void WhenTheTwoNumbersAreAdded()
 		{
-			//TODO: implement act (action) logic
+			response.StatusCode.Should().Be(200);
+		}
 
-			_scenarioContext.Pending();
+		[Then(@"process is executed with errors")]
+		public void ThenProcessIsExecutedWithErrors()
+		{
+			response.StatusCode.Should().Be(400);
 		}
 
 		[When(@"the user updates the category with (.*) and (.*)")]
@@ -105,6 +119,22 @@ namespace RestSharpGroupTraining.BDD
 
 		}
 
+        [Then(@"a list of pets with the selected status")]
+		public void ThenAListOfPetsWithTheSelectedStatus()
+		{
+			List<Pet> mascotas = Pet.Deserialize(response);
+
+			if (mascotas.Count>0)
+			{
+				mascotas.Should().OnlyContain(x => x.status.Equals(status));
+			}
+		}
+		
+		[Then(@"an error message with text ""(.*)"" shows")]
+		public void ThenAnErrorMessageWithTextShows(string errorMessage)
+		{
+			response.Content.Should().Be(errorMessage);
+		}
 
 		[Given(@"i'm gonna create a Pet with Pet Name: ""(.*)"", Type Name: ""(.*)"", photoUrls: ""(.*)"" and status: ""(.*)""")]
 		public void GivenIMGonnaCreateAPetWithPetNameTypeNamePhotoUrlsAndStatus(string PetName, string TypeName, string photoUrls, string status)
