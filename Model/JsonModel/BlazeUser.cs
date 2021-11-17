@@ -16,7 +16,6 @@ namespace RestSharpGroupTraining.Model.JsonModel
             this.username = user;
             this.password = pass;
             this.variable = "test";
-
         }
     }
 }
